@@ -1,0 +1,36 @@
+﻿@model List<Plataforma_De_Recomendacion_De_Contenido.Models.Genero>;
+
+<div class="card">
+    <div class="card-header">
+        <h5> Lista de Generos </h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="Create" asp-controller="Genero" asp-route-GeneroId="0">Crear Nuevo</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Detalle</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td>@item.Detalle</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-action="Edit" asp-controller="Genero" asp-route-idGenero="@item.GeneroId"> Editar </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-controller="Genero" asp-route-idGenero="@item.GeneroId"> Eliminar </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model List<Plataforma_De_Recomendacion_De_Contenido.Models.Serie>;
+
+<div class="card">
+    <div class="card-header">
+        <h5> Lista de Series </h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="Create" asp-controller="Serie" asp-route-ContenidoId="0">Crear Nuevo</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Sinopsis</th>
+                    <th>Pais</th>
+                    <th>Director</th>
+                    <th>Año de Lanzamiento</th>
+                    <th>Duracion en minutos</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td>@item.Sinopsis</td>
+                        <td>@item.Pais</td>
+                        <td>@item.Director</td>
+                        <td>@item.AnoLanzamiento</td>
+                        <td>@item.CantidadTemporadas</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-action="Edit" asp-controller="Serie" asp-route-idSerie="@item.ContenidoId"> Editar </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-controller="Serie" asp-route-idSerie="@item.ContenidoId"> Eliminar </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

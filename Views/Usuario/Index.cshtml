@@ -1,0 +1,42 @@
+﻿@model List<Plataforma_De_Recomendacion_De_Contenido.Models.Usuario>;
+
+<div class="card">
+    <div class="card-header">
+        <h5> Lista de Usuarios </h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="Create" asp-controller="Usuario" asp-route-GeneroId="0">Crear Nuevo</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Nacionalidad</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.NombreUsuario</td>
+                        <td>@item.Nacionalidad</td>
+                        <td>@item.FechaNacimiento</td>
+                        <td>@item.Email</td>
+                        <td>@item.Rol</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-action="Edit" asp-controller="Usuario" asp-route-idUsuario="@item.UsuarioId"> Editar </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-controller="Usuario" asp-route-idUsuario="@item.UsuarioId"> Eliminar </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

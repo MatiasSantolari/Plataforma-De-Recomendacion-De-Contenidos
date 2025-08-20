@@ -1,0 +1,24 @@
+﻿@model Plataforma_De_Recomendacion_De_Contenido.Models.Genero;
+
+<h3 class="text-danger">¿Esta seguro que desea eliminar este Genero?</h3>
+<hr />
+
+<div class="row">
+    <div class="col-sm-4">
+        <form asp-action="Delete" asp-controller="Genero" method="post">
+            <input type="hidden" asp-for="GeneroId" />
+            <div class="mb-2">
+                <label class="form-label" asp-for="Nombre">Nombre Genero</label>
+                <input class="form-control form-control-sm" asp-for="Nombre" type="text" disabled />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Detalle">Detalle Genero</label>
+                <input class="form-control form-control-sm" asp-for="Detalle" type="text" disabled />
+            </div>
+            <div class="mb-2">
+                <button class=" btn btn-danger btn-sm w-25" type="submit">Eliminar</button>
+                <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Genero">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model Plataforma_De_Recomendacion_De_Contenido.Models.ViewModels.PeliculaVM
+@{
+    ViewData["Title"] = "Actualizar Pelicula";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar Pelicula</h1>
+
+<div class="row">
+    <div class="col-sm-4">
+        <form asp-action="Edit" asp-controller="Pelicula" method="post">
+            <input type="hidden" asp-for="ContenidoId" />
+            <div class="mb-2">
+                <label class="form-label" asp-for="Nombre">Nombre Pelicula</label>
+                <input class="form-control form-control-sm" asp-for="Nombre" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Sinopsis">Sinopsis</label>
+                <input class="form-control form-control-sm" asp-for="Sinopsis" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="AnoLanzamiento">Año de Lanzamiento</label>
+                <input class="form-control form-control-sm" asp-for="AnoLanzamiento" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Director">Director</label>
+                <input class="form-control form-control-sm" asp-for="Director" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="DuracionMinutos">Duracion en minutos</label>
+                <input class="form-control form-control-sm" asp-for="DuracionMinutos" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Pais">Pais</label>
+                <input class="form-control form-control-sm" asp-for="Pais" type="text" />
+            </div>
+            <div class="mb-2">
+                <label>Géneros</label>
+                <select asp-for="GenerosSeleccionados"
+                        asp-items="Model.GenerosDisponibles"
+                        class="form-control"
+                        multiple>
+                </select>
+            </div>
+            <div class="mb-2">
+                <button class=" btn btn-primary btn-sm w-25" type="submit">Actualizar</button>
+                <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Pelicula">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>

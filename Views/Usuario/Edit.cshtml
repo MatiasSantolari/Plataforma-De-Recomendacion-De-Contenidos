@@ -1,0 +1,51 @@
+﻿@model Plataforma_De_Recomendacion_De_Contenido.Models.Usuario;
+@{
+    ViewData["Title"] = "Actualizar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Actualizar datos de Usuario</h1>
+
+<div class="row">
+    <div class="col-sm-4">
+        <form asp-action="Edit" asp-controller="Usuario" method="post">
+            <input type="hidden" asp-for="UsuarioId" />
+            <div class="mb-2">
+                <label class="form-label" asp-for="NombreUsuario">Nombre de Usuario</label>
+                <input class="form-control form-control-sm" asp-for="NombreUsuario" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Nacionalidad">Nacionalidad</label>
+                <input class="form-control form-control-sm" asp-for="Nacionalidad" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="FechaNacimiento">Fecha de Nacimiento</label>
+                <input class="form-control form-control-sm" asp-for="FechaNacimiento" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Email">Email</label>
+                <input class="form-control form-control-sm" asp-for="Email" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Rol">Rol</label>
+                <input class="form-control form-control-sm" asp-for="Rol" type="text" />
+            </div>
+            <div class="mb-2">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-2">
+                @if (Model.UsuarioId == 0)
+                {
+                    <button class=" btn btn-primary btn-sm w-25" type="submit">Crear</button>
+                }
+                else
+                {
+                    <button class=" btn btn-primary btn-sm w-25" type="submit">Actualizar</button>
+                }
+                <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Usuario">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
