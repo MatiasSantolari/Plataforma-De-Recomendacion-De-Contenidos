@@ -18,6 +18,7 @@
                     <th>Duracion en minutos</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,9 @@
                         <td>@item.DuracionMinutos</td>
                         <td>
                             <a class="btn btn-primary btn-sm" asp-action="Edit" asp-controller="Pelicula" asp-route-idPelicula="@item.ContenidoId"> Editar </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-info btn-sm" asp-action="GetPelicula" asp-controller="Pelicula" asp-route-idPelicula="@item.ContenidoId"> Ver Informacion </a>
                         </td>
                         <td>
                             <a class="btn btn-danger btn-sm" asp-action="Delete" asp-controller="Pelicula" asp-route-idPelicula="@item.ContenidoId"> Eliminar </a>

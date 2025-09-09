@@ -221,6 +221,43 @@ namespace Plataforma_De_Recomendacion_De_Contenido.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult GetPelicula(int idPelicula)
+        {
+            var pelicula = _context.Peliculas
+                                   .Include(p => p.UsuarioContenidos)
+                                   .FirstOrDefault(p => p.ContenidoId == idPelicula);
+            if (pelicula == null) return BadRequest(error: 404);
+            return View(pelicula);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegistrarFavorito(int contenidoId)
+        {
+            int usuarioId = 1; // TODO: tomar el id del usuario logueado
+
+            var usuarioContenido = _context.UsuarioContenidos
+                .FirstOrDefault(uc => uc.ContenidoId == contenidoId && uc.UsuarioId == usuarioId); //esto del usuario esta harcodeado de momento
+
+            if (usuarioContenido == null)
+            {
+                usuarioContenido = new UsuarioContenido()
+                {
+                    ContenidoId = contenidoId,
+                    UsuarioId = 1, //tambien hardcodeado
+                    MarcadorFavoritos = true,
+                    Calificacion = null,
+                };
+                _context.UsuarioContenidos.Add(usuarioContenido);
+            }
+            else
+            {
+                usuarioContenido.MarcadorFavoritos = !usuarioContenido.MarcadorFavoritos; //le cambio el valor que ya tiene
+                _context.UsuarioContenidos.Update(usuarioContenido);
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("GetPelicula", new { idPelicula = contenidoId });
+        }
     }
 }

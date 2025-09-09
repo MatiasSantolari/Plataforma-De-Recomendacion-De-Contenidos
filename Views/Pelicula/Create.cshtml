@@ -36,11 +36,24 @@
             </div>
             <div class="mb-2">
                 <label>Géneros</label>
+                <!--
                 <select asp-for="GenerosSeleccionados"
                         asp-items="Model.GenerosDisponibles"
                         class="form-control"
                         multiple>
                 </select>
+                -->
+                @foreach(var g in Model.GenerosDisponibles)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="GenerosSeleccionados"
+                               value="@g.Value"
+                               @(Model.GenerosSeleccionados.Contains(int.Parse(g.Value)) ? "checked" : "") />
+                        <label class="form-check-label">@g.Text</label>
+                    </div>
+                }
             </div>
             <div class="mb-2">
                 <button class=" btn btn-primary btn-sm w-25" type="submit">Crear</button>

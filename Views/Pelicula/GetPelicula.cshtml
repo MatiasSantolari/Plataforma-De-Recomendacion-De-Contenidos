@@ -1,0 +1,35 @@
+﻿@model Plataforma_De_Recomendacion_De_Contenido.Models.Pelicula
+
+<div class="card">
+    <div class="card-header">
+        <h5> @(Model.Nombre) </h5>
+        <hr />
+    </div>
+    @if (Model.UsuarioContenidos.FirstOrDefault(p => p.ContenidoId == Model.ContenidoId)?.MarcadorFavoritos == true) //osea que el usuario colocó esa peli como favorita, pero falta vincular al usuario que inicio sesion 
+    {
+        <p> Pelicula pertenece a favoritos </p>
+        <form asp-action="RegistrarFavorito" asp-controller="Pelicula" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="contenidoId" value="@Model.ContenidoId" />
+            <button class=" btn btn-danger " type="submit">Desmarcar como Favorito</button>
+        </form>
+    }
+    else
+    {
+        <p class="text-warning"> Pelicula no pertenece a favoritos </p>
+        <form asp-action="RegistrarFavorito" asp-controller="Pelicula" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="contenidoId" value="@Model.ContenidoId" />
+            <button class=" btn btn-success " type="submit">Marcar como Favorito</button>
+        </form>
+    }
+    
+    <div class="container">
+        <p> Sinopsis de la Pelicula: @(Model.Sinopsis) </p>
+        <hr />
+        <p> Pais: @(Model.Pais) </p>
+        <p> Director/es: @(Model.Director) </p>
+        <p> Duracion Pelicula: @(Model.DuracionMinutos) </p>
+        <p> Año de Lanzamiento: @(Model.AnoLanzamiento) </p>
+    </div>
+</div>
